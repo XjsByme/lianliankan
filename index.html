@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html id="ng-app" ng-app="myApp" lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<title>连连看</title>
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<body ng-controller="lineGameCtl">
+
+	<div>
+		图片种类： <select ng-model="curImgType" ng-options="imgType.value for imgType in imgTypes" ng-change="imgTypesChange(curImgType)"></select>
+	</div>
+	<div ng-repeat="item in curContent.curArray"  ng-init="outerIndex = $index">
+		<img class="imgContent" src="img/{{curImgType.imgType}}/{{img}}.png" ng-repeat="img in item track by $index" 
+			ng-if="$index != 0 && outerIndex != 0 && $index != curContent.rows + 1 &&  outerIndex != curContent.columns + 1" 
+			ng-click="curClick($index,outerIndex,img)">
+	</div>
+
+	<!-- // <script type="text/javascript" src="js/jquery.min.js" ></script> -->
+	<script type="text/javascript" src="js/angular.min.js" ></script>
+	<script type="text/javascript" src="js/main.js"></script>
+
+</body>
+</html>
